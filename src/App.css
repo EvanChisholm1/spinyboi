@@ -1,45 +1,56 @@
-.App {
-  text-align: center;
-}
-.App code {
-  background: #FFF3;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-.App p {
-  margin: 0.4rem;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  font-size: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
+  display: grid;
+  place-items: center;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.spinnyboi {
+  width: 50rem;
+  height: 50rem;
+  background-color: #ccc;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  border-radius: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.item {
+  font-size: 2rem;
+  position: absolute;
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  width: 12rem;
+  height: 12rem;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  transform-origin: center 25rem;
+  transition: 0.5s;
+  border-radius: 1rem;
+}
+
+.spin-button {
+  align-self: center;
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  border: none;
+  font-size: 2.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 500px) {
+  :root {
+    font-size: 8px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media screen and (max-width: 400px) {
+  :root {
+    font-size: 7px;
   }
 }

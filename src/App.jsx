@@ -1,37 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
+function SpinnyBoi({ items }) {
+  const [offset, setOffset] = useState(0);
+
+  function getNewOffset() {
+    let newOffset = Math.round(Math.random() * items.length);
+    if (newOffset === offset) newOffset = getNewOffset();
+    return newOffset;
+  }
+
+  function handleSpin() {
+    const newOffset = getNewOffset;
+    setOffset(newOffset);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div className="spinnyboi">
+      {items.map((item, i) => (
+        <div
+          key={item}
+          className="item"
+          style={{
+            rotate: `${(360 / items.length) * (i + offset)}deg`,
+          }}
+        >
+          {item}
+        </div>
+      ))}
+      <button className="spin-button" onClick={handleSpin}>
+        Spin
+      </button>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div className="app">
+      <SpinnyBoi
+        items={[
+          'tennis',
+          'soccer',
+          'basketball',
+          'hoppscotch',
+          'jumprope',
+          'hoolahoop',
+        ]}
+      />
     </div>
   );
 }
